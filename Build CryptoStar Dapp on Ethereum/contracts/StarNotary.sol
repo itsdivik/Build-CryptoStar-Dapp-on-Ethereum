@@ -43,18 +43,7 @@ contract StarNotary is ERC721 {
         address tokenReceiver;
         uint256 token1;
         uint256 token2;
-        if (ownerOf(_tokenId1) == msg.sender) {
-            tokenExchanger = ownerOf(_tokenId1);
-            tokenReceiver = ownerOf(_tokenId2);
-            token1 = _tokenId1;
-            token2 = _tokenId2;
-        }
-        else if (ownerOf(_tokenId2) == msg.sender) {
-            tokenExchanger = ownerOf(_tokenId2);
-            tokenReceiver = ownerOf(_tokenId1);
-            token1 = _tokenId2;
-            token2 = _tokenId1;
-        }
+        require(ownerOf(_tokenId1) == msg.sender || ownerOf(_tokenId2) == msg))
         else {
             revert("You can't exchange a star you don't own.");
         }
